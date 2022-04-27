@@ -1,0 +1,231 @@
+$red: #e74c3c
+
+/* Common */
+
+.modal-dialog
+    z-index: 2000
+
+#login-email + #login-password,
+#login-old-password + #login-password
+    margin-top: -2px
+
+#login-email:focus,
+#login-password:focus,
+#login-old-password:focus
+    position: relative
+
+.m-hidden
+    display: none
+
+/* / Common */
+
+
+/* Notifications */
+
+.notifications
+    margin-bottom: 20px
+
+.notifications__inner
+    padding: 0 20px
+
+.notifications__content
+    background: #ECF0F1
+    padding: 20px 0
+
+.notifications__item
+    border-top: 1px solid rgba(52, 73, 94, .15)
+    padding-top: 20px
+    margin: 40px auto 0 auto
+    max-width: 650px
+
+.notifications__person
+    display: inline-block
+    vertical-align: top
+    text-align: center
+    max-width: 120px
+
+.notifications__sign
+    display: inline-block
+    vertical-align: top
+    font-size: 250% !important
+    line-height: 100px !important
+    padding: 0 20px
+
+.notifications__heart
+    display: inline-block
+    vertical-align: top
+    font-weight: bold
+    width: 100px
+    height: 100px
+    border-radius: 100px
+    position: relative
+
+.notifications__heart-icon
+    font-size: 350%
+    line-height: 100px
+    position: absolute
+    width: 100px
+    text-align: center
+    top: 0
+    left: 0
+
+.notifications__photo
+    margin: 0 auto
+    width: 100px
+    height: 100px
+    border-radius: 100px
+    background-size: cover
+    background-position: center
+
+.notifications__photo-placeholder
+    position: relative
+    background-color: #BDC3C7
+    color: #ECF0F1
+
+.notifications__photo-placeholder-inner
+    position: absolute
+    height: 24px
+    line-height: 24px
+    margin-top: -12px
+    top: 50%
+    width: 100%
+    text-align: center
+
+.notifications__name
+    padding-top: 10px
+    line-height: 120%
+
+.notifications__todo
+    border-top: 1px solid rgba(52, 73, 94, .15)
+    padding-top: 20px
+    margin: 40px auto 0 auto
+    max-width: 650px
+
+/* / Notifications */
+
+
+/* People */
+
+.people
+    padding: 20px 0
+
+.people__list
+    padding: 10px 0 0 20px
+    text-align: justify
+
+.people__search
+    padding: 0 20px
+
+.people__person
+    text-align: left
+    position: relative
+    display: inline-block
+    vertical-align: top
+    width: 200px
+    margin: 20px 0
+
+.people__photo
+    width: 150px
+    height: 150px
+    border-radius: 200px
+    background-position: center
+    background-size: cover
+
+.people__photo-placeholder
+    background-color: #ECF0F1
+    position: relative
+
+.people__photo-placeholder-inner
+    position: absolute
+    height: 24px
+    line-height: 24px
+    margin-top: -12px
+    top: 50%
+    width: 100%
+    text-align: center
+
+.people__love-button + .people__loved-by,
+.people__unlove-button + .people__loved-by
+    padding-left: 10px
+
+.people__name
+    font-size: 22px
+    line-height: 26px
+    padding: 15px 0
+
+.people__person_loved .people__photo
+    border: 3px solid $red
+
+.people__person_loved .people__name
+    color: $red
+
+.people__person_current .people__photo
+    border: 3px solid #3498DB
+
+.people__facebook
+    display: inline-block
+    background: #4c66a4
+    color: #ffffff
+    margin-left: 2px
+    border-radius: 2px
+    font-size: 16px
+    line-height: 16px
+    padding: 2px 3px 0px 9px
+    height: 16px
+    overflow: hidden
+    &:hover
+        color: #ffffff
+
+.people__person_last
+    display: inline-block
+    width: 70%
+    height: 1px
+
+/* / People */
+
+
+/* Footer */
+
+.footer
+    padding-top: 50px
+
+.footer__buttons
+    padding-top: 10px
+    padding-bottom: 10px
+
+.footer__button
+    min-width: 80px
+    display: inline-block
+
+/* / Footer */
+
+
+/* Account */
+
+.account__open-link
+    cursor: pointer
+
+.account__photo,
+.account__photo-placeholder
+    border-radius: 0
+    width: 200px
+    height: 200px
+
+/* / Account */
+
+/* About */
+
+.about
+    padding: 15px
+
+.about__picture
+    border: 1px solid #ECF0F1
+    padding: 3px
+    margin-bottom: 10px
+    border-radius: 3px
+
+.about__picture_wide
+    box-sizing: border-box
+    width: 100%
+
+/* / About */

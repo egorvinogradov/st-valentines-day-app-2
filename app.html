@@ -1,0 +1,591 @@
+<head>
+    <title>Kaplan Valentine</title>
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/flat-ui.css">
+    <script src="/public/js/libs/jquery-1.8.0.min.js"></script>
+    <script src="/public/js/libs/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/public/js/libs/jquery.ui.touch-punch.min.js"></script>
+    <script src="/public/js/libs/bootstrap.min.js"></script>
+    <script src="/public/js/libs/bootstrap-select.js"></script>
+    <script src="/public/js/libs/bootstrap-switch.js"></script>
+    <script src="/public/js/libs/flatui-checkbox.js"></script>
+    <script src="/public/js/libs/flatui-radio.js"></script>
+    <script src="/public/js/libs/jquery.tagsinput.js"></script>
+    <script src="/public/js/libs/jquery.placeholder.js"></script>
+    <script src="/public/js/libs/handlebars.1.1.2.min.js"></script>
+    <script src="/public/js/libs/md5.js"></script>
+    <script src="/client/helpers.js"></script>
+
+
+    <script>
+        class Collection {
+            users = {
+                allow: () => {}
+            };
+            allow(){};
+        }
+        window.Meteor = {
+            users: Collection,
+            Collection: Collection,
+            userId: () => 1,
+            isClient: true,
+            isServer: false,
+        };
+        window.Accounts = {};
+    </script>
+
+    <script src="/app.js"></script>
+<!--    <script type="text/javascript">-->
+<!--    var $buoop = {};-->
+<!--    $buoop.ol = window.onload;-->
+<!--    window.onload=function(){-->
+<!--     try {if ($buoop.ol) $buoop.ol();}catch (e) {}-->
+<!--     var e = document.createElement("script");-->
+<!--     e.setAttribute("type", "text/javascript");-->
+<!--     e.setAttribute("src", "//browser-update.org/update.js");-->
+<!--     document.body.appendChild(e);-->
+<!--    }-->
+<!--    </script>-->
+<!--    <script>-->
+<!--      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+<!--      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+<!--      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+<!--      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');-->
+<!--      ga('create', 'UA-24995746-5', 'kaplanvalentine.com');-->
+<!--      ga('send', 'pageview');-->
+<!--    </script>-->
+
+</head>
+
+
+<body>
+    {{> header}}
+    {{> notifications}}
+    {{> people}}
+    {{> footer}}
+</body>
+
+
+<template name="header">
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <i class="fui-heart text-danger"></i>
+                    KaplanValentine
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#about">
+                            <i class="fui-list"></i>&nbsp;
+                            How it works
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#contact">
+                            <i class="fui-mail"></i>&nbsp;
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {{#if currentPerson}}
+                        <li>
+                            <a class="account__open-link" data-toggle="modal" data-target="#account">
+                                <i class="fui-gear"></i>&nbsp;
+                                {{currentPerson.firstName}} {{currentPerson.lastName}}
+                            </a>
+                        </li>
+                    {{/if}}
+                    {{loginButtons}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="aboutLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="aboutLabel">
+                        How to use this website
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="about">
+
+                        <h5>Find out who likes you</h5>
+                        <p>
+                            <i>
+                                www.KaplanValentine.com is a simple and funny way to let someone in Kaplan Berkeley
+                                know that you like him or her. Sign up and choose anonymously up to 5 people you like.
+                                If someone of these people likes you too, you both will see notification.
+                            </i>
+                        </p>
+                        <br>
+                        <h6>
+                            <strong>
+                                1. Sign up via email.
+                            </strong>
+                        </h6>
+                        <p>
+                            Choose "Sign In/Up" in the top right corner and select "Create account"
+                            in the bottom of dropdown.
+                        </p>
+                        <p>
+                            <img class="about__picture about__picture_wide" src="/img/intro-1.png">
+                        </p>
+                        <h6>
+                            <strong>
+                                <br>
+                                2. Provide information about yourself
+                            </strong>
+                        </h6>
+                        <p>
+                            Click at your name in the top right corner and paste link to you photo in "Photo"
+                            field in the window. Specify link to your Facebook account below&nbsp;if you have it.
+                        </p>
+                        <p>
+                            <img class="about__picture about__picture_wide" src="/img/intro-2.png">
+                        </p>
+
+                        <h6>
+                            <strong>
+                                <br>
+                                3. Choose 5 people you like
+                            </strong>
+                        </h6>
+                        <p>
+                            Search among Kaplan's people and push button "Love" under photos of people you like.
+                            You can choose only 5 people.
+                        </p>
+                        <p>
+                            <img class="about__picture about__picture_wide" src="/img/intro-3.png">
+                        </p>
+
+                        <h6>
+                            <strong>
+                                <br>
+                                4. Wait for notification
+                            </strong>
+                        </h6>
+                        <p>
+                            If someone of these 5 people likes you too, you will see notification, otherwise, you will not
+                            know who exactly likes you. Notifications will be turned on few days later.
+                        </p>
+                        <p>
+                            <img class="about__picture about__picture_wide" src="/img/intro-4.png">
+                        </p>
+
+                        <h6>
+                            <strong>
+                                <br>
+                                5. Have fun!
+                            </strong>
+                        </h6>
+
+                        <hr>
+
+                        <p>
+                            <img class="about__picture" src="/img/contact.png" width="120">
+                        </p>
+                        <p>
+                            If you have any troubles with website, click "Contact" link in the header to see
+                            contact information. Feel free to ask any question.
+                        </p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="contactLabel">
+                        Contact
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <h6>
+                        Questions? Feel free to ask at any time.
+                    </h6>
+                    <br>
+
+                    <div class="row">
+                        <span class="col-sm-5">Email</span>
+                        <span class="col-sm-5">
+                            <a href="mailto:egorvinogradov@live.com">
+                                egorvinogradov@live.com
+                            </a>
+                        </span>
+                    </div>
+
+                    <div class="row">
+                        <span class="col-sm-5">Phone and WhatsApp</span>
+                        <span class="col-sm-5">(510) 717-81-58</span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="account" tabindex="-1" role="dialog" aria-labelledby="accountLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="accountLabel">
+                        {{currentPerson.firstName}} {{currentPerson.lastName}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal" role="form">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">&nbsp;</label>
+                            <div class="col-sm-8">
+                                {{#if currentPerson.photo}}
+                                    <div class="people__photo account__photo" style="background-image: url('{{currentPerson.photo}}')"></div>
+                                {{else}}
+                                    <div class="people__photo people__photo-placeholder account__photo-placeholder">
+                                        <div class="people__photo-placeholder-inner text-muted">No photo</div>
+                                    </div>
+                                {{/if}}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">First name</label>
+                            <div class="col-sm-8">
+                                <input class="account__first-name-input form-control" placeholder="First name" value="{{currentPerson.firstName}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Last name</label>
+                            <div class="col-sm-8">
+                                <input class="account__last-name-input form-control" placeholder="Last name" value="{{currentPerson.lastName}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Photo</label>
+                            <div class="col-sm-8">
+                                <input class="account__photo-input form-control" placeholder="E.g. https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1" value="{{currentPerson.photo}}">
+                                <p class="help-block">
+                                    Paste link to your photo on the Internet
+                                    (for example link to photo from Facebook). <br>
+                                    If you don't have photos uploaded to the Internet, you can upload
+                                    your photo to <a href="http://imgur.com/" target="_blank">Imgur</a>
+                                    and then enter here the link to uploaded photo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Facebook</label>
+                            <div class="col-sm-8">
+                                <input class="account__facebook-input form-control" placeholder="E.g. http:://facebook.com/profile.php=123464576" value="{{currentPerson.facebook}}">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="account__save btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</template>
+
+
+<template name="people">
+    <div class="people container">
+        <div class="people__search">
+            <div class="form-group">
+                <input class="people__search-input form-control" type="search" placeholder="Quick search" value="{{ query }}">
+                <span class="input-icon fui-search"></span>
+            </div>
+        </div>
+        {{> peopleList}}
+    </div>
+</template>
+
+
+<template name="peopleList">
+
+        <div class="m-hidden">
+            {{lastUpdate}}
+        </div>
+
+        <div class="people__list">
+            {{#each peopleList}}
+                {{#if firstName}}
+
+                    <div class="people__person {{#if isLoved}}people__person_loved{{/if}} {{#if isCurrentUser}}people__person_current{{/if}}" data-username="{{username}}">
+                        {{#if photo}}
+                            <div class="people__photo" style="background-image: url('{{photo}}')"></div>
+                        {{else}}
+                            <div class="people__photo people__photo-placeholder">
+                                <div class="people__photo-placeholder-inner text-muted">No photo</div>
+                            </div>
+                        {{/if}}
+                        <div class="people__name">
+                            {{firstName}} {{lastName}}
+                            {{#if facebook}}
+                                <a class="people__facebook" href="{{facebook}}" target="_blank">f</a>
+                            {{/if}}
+                        </div>
+
+                        <div class="people__love">
+
+                            {{#if loggedIn}}
+                                {{#if isCurrentUser}}
+                                    <div class="text-muted">
+                                        This is you
+                                    </div>
+                                {{else}}
+                                    {{#if isLoved}}
+                                        <button class="people__unlove-button btn btn-inverse btn-sm">
+                                            <i class="glyphicon glyphicon-heart-empty"></i>
+                                            Unlove
+                                        </button>
+                                    {{else}}
+                                        <button class="people__love-button btn btn-danger btn-sm">
+                                            <i class="glyphicon glyphicon-heart-empty"></i>
+                                            Love
+                                        </button>
+                                    {{/if}}
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
+
+</template>
+
+
+<template name="notifications">
+
+    {{#if notifications}}
+        <div class="notifications container">
+            <div class="notifications__inner">
+                <div class="notifications__content img-rounded text-center">
+
+                    <h3>Congratulations!</h3>
+
+                    {{#each notifications}}
+                        <div class="notifications__item">
+                            <p class="lead">
+                                {{firstName}} {{lastName}} loves you too!
+                            </p>
+                            <div class="notifications__photos">
+                                <div class="notifications__person">
+                                    {{#if currentPerson.photo}}
+                                        <div class="notifications__photo" style="background-image: url({{currentPerson.photo}})"></div>
+                                    {{else}}
+                                        <div class="notifications__photo notifications__photo-placeholder">
+                                            <div class="notifications__photo-placeholder-inner">No photo</div>
+                                        </div>
+                                    {{/if}}
+                                    <div class="notifications__name">
+                                        {{currentPerson.firstName}}
+                                    </div>
+                                </div>
+                                <span class="notifications__sign lead">+</span>
+                                <div class="notifications__person">
+                                    {{#if photo}}
+                                        <div class="notifications__photo" style="background-image: url({{photo}})"></div>
+                                    {{else}}
+                                        <div class="notifications__photo notifications__photo-placeholder">
+                                            <div class="notifications__photo-placeholder-inner">No photo</div>
+                                        </div>
+                                    {{/if}}
+                                    <div class="notifications__name">
+                                        {{firstName}}
+                                    </div>
+                                </div>
+                                <span class="notifications__sign lead">=</span>
+                                <span class="notifications__heart palette palette-alizarin">
+                                    <i class="notifications__heart-icon fui-heart"></i>
+                                </span>
+                            </div>
+                        </div>
+                    {{/each}}
+
+                    <div class="notifications__todo">
+                        <h5>What to do next?</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                Invite to the
+                                <a href="http://www.yelp.com/search?find_desc=cinemas&find_loc=Berkeley" target="_blank">
+                                    cinema
+                                </a>
+                            </li>
+                            <li>
+                                Ask to go to the
+                                <a href="http://www.yelp.com/search?find_desc=restaurants&find_loc=Berkeley" target="_blank">
+                                    restaurant
+                                </a>
+                            </li>
+                            <li>
+                                Go to meet sunset on the
+                                <a href="https://www.google.com/maps/place/Indian+Rock+Park/" target="_blank">
+                                    Indian Rock
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {{/if}}
+
+</template>
+
+
+<template name="footer">
+
+    <div class="footer container clearfix">
+        <p class="pull-left small">
+            KaplanValentine.com, 2014 <br>
+            <a href="https://www.facebook.com/egorvinogradov" target="_blank">
+                Egor Vinogradov
+            </a>
+            &nbsp;
+            &middot;
+            &nbsp;
+            <a href="https://www.facebook.com/kicberkeley" target="_blank">
+                Kaplan Berkeley
+            </a>
+        </p>
+    </div>
+
+</template>
+
+
+
+<template name="peopleList2">
+
+    <ul>
+        {{#each userList}}
+            <li>
+                <div>
+                    <b>{{_id}}</b>
+                </div>
+                {{#each emails}}
+                    {{this.address}}
+                {{/each}}
+            </li>
+        {{/each}}
+    </ul>
+
+    <h3>Current person</h3>
+
+    <div class="current-person">
+
+        {{#if notifications}}
+            <div class="notification">
+                <h2>Congratulations!</h2>
+                {{#each notifications}}
+                    <div class="notification-item">
+                        {{name}} loves you too!<br>
+                        {{currentPerson.name}} + {{name}} = Love
+                    </div>
+                {{/each}}
+                <h3>What to do next?</h3>
+                <ul>
+                    <li>Go to the cinema</li>
+                    <li>Book a room in motel</li>
+                    <li>...</li>
+                </ul>
+            </div>
+        {{/if}}
+
+
+        {{#if currentPerson}}
+
+            {{#if currentPerson.photo}}
+                <div>
+                    <img src="{{currentPerson.photo}}" width="100">
+                </div>
+            {{/if}}
+
+            <div>
+                <b>
+                    {{currentPerson.name}}
+                </b>
+                <small class="user-id">
+                    (id: {{currentPerson.userId}})
+                </small>
+            </div>
+
+            <div>{{currentPerson.lovedBy}} people love you</div>
+
+            <div class="loved">
+                {{#each key_value currentPerson.loved}}{{#unless key}}{{value}}{{else}}, {{value}}{{/unless}}{{else}}
+                    ---
+                {{/each}}
+            </div>
+
+            <br>
+            <h4>Edit personal info</h4>
+
+            <div>
+                <div>
+                    <label>
+                        Name:<br>
+                        <input class="name" value="{{currentPerson.name}}">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Photo:<br>
+                        <input class="photo" value="{{currentPerson.photo}}">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        About:<br>
+                        <input class="about" value="{{currentPerson.about}}">
+                    </label>
+                </div>
+                <button class="save">Save</button>
+            </div>
+
+        {{else}}
+            Not logged in
+        {{/if}}
+
+    </div>
+
+
+</template>

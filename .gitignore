@@ -1,0 +1,6 @@
+.idea
+.meteor
+*.js
+*.css
+!public/js/libs/*.js
+!public/css/*.css

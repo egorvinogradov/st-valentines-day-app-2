@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "helpers.js",
+  "sourceRoot": "",
+  "sources": [
+    "helpers.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EAAA,UAAU,CAAC,cAAX,CAA0B,WAA1B,EAAuC,QAAA,CAAC,OAAD,EAAU,OAAV,CAAA;AACnC,QAAA;IAAA,MAAA,GAAS;IACT,CAAC,CAAC,IAAF,CAAO,OAAP,EAAgB,QAAA,CAAC,KAAD,EAAQ,GAAR,EAAa,IAAb,CAAA;aACZ,MAAM,CAAC,IAAP,CACI;QAAA,GAAA,EAAK,GAAL;QACA,KAAA,EAAO;MADP,CADJ;IADY,CAAhB;WAIA;EANmC,CAAvC;AAAA",
+  "sourcesContent": [
+    "Handlebars.registerHelper \"key_value\", (context, options) ->\n    result = []\n    _.each context, (value, key, list) ->\n        result.push\n            key: key\n            value: value\n    result\n"
+  ]
+}
