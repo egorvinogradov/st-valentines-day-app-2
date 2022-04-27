@@ -1,6 +1,6 @@
 # [KaplanValentine.com](http://kaplanvalentine.com:8000/)
 
-## Find out who likes you
+## Tinder-like web-app for my language school
  
 [www.KaplanValentine.com](http://kaplanvalentine.com:8000/) is a simple and funny way to let someone in Kaplan Berkeley Language School know that you like him or her.
 
