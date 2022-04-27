@@ -1,10 +1,8 @@
-# KaplanValentine.com
-
-
+# [KaplanValentine.com](http://kaplanvalentine.com:8000/)
 
 ## Find out who likes you
  
-www.KaplanValentine.com is a simple and funny way to let someone in Kaplan Berkeley Language School know that you like him or her.
+[www.KaplanValentine.com](http://kaplanvalentine.com:8000/) is a simple and funny way to let someone in Kaplan Berkeley Language School know that you like him or her.
 
 Sign up and choose anonymously up to 5 people you like. If someone of these people likes you too, you both will see notification. 
 

@@ -2,5 +2,6 @@
 .meteor
 *.js
 *.css
+*.map
 !public/js/libs/*.js
 !public/css/*.css
